@@ -1,0 +1,60 @@
+- hosts: localhost glpat-JVqrQkEeU28jcor8hEMg 
+  vars:  MQnzDq6182t0g/4FufpBLezoX6ipQWRbiMdPeM7que8
+    jenkins_hostname: localhost
+  roles:
+    - role: geerlingguy.java
+      become: yes
+    - role: geerlingguy.jenkins
+      become: yes
+      state: Installed
+---
+- hosts: localhost
+  become: true
+  become_user: ubuntu
+  tasks:
+    - name: install curl on Ubuntu
+      apt:
+        name: curl
+        state: 'latest'
+        update_cache: no
+sudo su
+- name: Install Java and Jmeter
+  hosts: all
+  roles:
+
+    - role: lean_delivery.java
+      java_distribution: openjdk
+      java_major_version: 8
+      transport: repositories
+      java_tarball_install: false
+
+    - role: lean_delivery.jmeter
+      jmeter_plugins_install: true
+      jmeter_plugins:
+        - jpgc-casutg
+        - jpgc-tst
+        - jpgc-functions
+        - jpgc-dummy 
+     - role: lean_delivery.jenkins
+
+
+hosts: localhost
+  vars:
+    jenkins2_ssh_keys_generate: true
+    jenkins2_ssh_keys_slave_hosts:
+      - {host: 'slave1.example.com', users: ['root', 'jenkins']}
+      - {host: 'slave2.example.com', users: ['root', 'jenkins']}
+  roles:
+    - role: lean_delivery.java
+java_distribution: openjdk
+java_major_version: 8
+transport: repositories
+java_tarball_install: false
+- role: lean_delivery.jmeter
+jmeter_plugins_install: true
+jmeter_plugins:
+- jpgc-casutg
+- jpgc-tst
+- jpgc-functions
+- jpgc-dummy
+-name:Import a jenkins job via CLI
